@@ -1,4 +1,4 @@
-package POOMA_ENTREGAS.ImplementacaoPI.Parte2;
+package POOMA_ENTREGAS.ImplementacaoPI.ParteTeste;
 
 public class Main {
     public static void main(String[] args) {

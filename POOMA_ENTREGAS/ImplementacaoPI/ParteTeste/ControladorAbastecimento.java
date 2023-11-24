@@ -1,4 +1,4 @@
-package POOMA_ENTREGAS.ImplementacaoPI.Parte2;
+package POOMA_ENTREGAS.ImplementacaoPI.ParteTeste;
 
 public class ControladorAbastecimento {
     private InterfaceUsuario interfaceUsuario;

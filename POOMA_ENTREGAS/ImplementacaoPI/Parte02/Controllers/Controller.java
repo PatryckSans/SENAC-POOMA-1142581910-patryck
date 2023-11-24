@@ -1,34 +1,43 @@
-package POOMA_ENTREGAS.ImplementacaoPI.Parte02;
+package POOMA_ENTREGAS.ImplementacaoPI.Parte02.Controllers;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
-public class Main {
-    public static void main(String[] args) {
-        Veiculo veiculo = new Veiculo("Modelo", 2022, "ABC1234", 12.5, "Gasolina", 60.0, "senha123");
+import POOMA_ENTREGAS.ImplementacaoPI.Parte02.Models.Abastecimento;
+import POOMA_ENTREGAS.ImplementacaoPI.Parte02.Models.Resumo;
+import POOMA_ENTREGAS.ImplementacaoPI.Parte02.Models.Veiculo;
 
-        if (loginVeiculo(veiculo, "ABC1234", "senha123")) {
-            Abastecimento abastecimento1 = criarAbastecimento(veiculo);
-            Abastecimento abastecimento2 = criarAbastecimento(veiculo);
+public class Controller {
+    private Veiculo veiculo;
 
-            listarAbastecimentos(veiculo);
+    public Controller(Veiculo veiculo) {
+        this.veiculo = veiculo;
+    }
 
-            listarInformacoesVeiculo(veiculo);
+    public void iniciar() {
+        if (loginVeiculo("ABC1234", "senha123")) {
+            criarAbastecimento();
 
-            criarResumo(veiculo);
+            listarAbastecimentos();
+
+            listarInformacoesVeiculo();
+
+            criarResumo();
+
+            System.out.println("Até logoo!");
 
         } else {
             System.out.println("Login falhou. Placa ou senha incorretas.");
         }
     }
 
-    private static boolean loginVeiculo(Veiculo veiculo, String placa, String senha) {
+    private boolean loginVeiculo(String placa, String senha) {
         return veiculo.getPlaca().equals(placa) && veiculo.getSenha().equals(senha);
     }
 
-    private static Abastecimento criarAbastecimento(Veiculo veiculo) {
+    private void criarAbastecimento() {
         try (Scanner scanner = new Scanner(System.in)) {
             System.out.println("Informe a data do abastecimento (formato dd/MM/yyyy): ");
             String dataStr = scanner.nextLine();
@@ -43,31 +52,52 @@ public class Main {
             System.out.println("Informe a quantidade de combustível abastecida: ");
             double quantidadeCombustivel = scanner.nextDouble();
 
-            System.out.println("Informe o preço por litro: ");
-            double precoLitro = scanner.nextDouble();
-
             System.out.println("Informe a quilometragem no momento do abastecimento: ");
             double quilometragem = scanner.nextDouble();
 
             System.out.println("Informe o tipo de combustível: ");
             String combustivel = scanner.next();
 
+            System.out.println("Informe o preco do litro pago no abastecimento: ");
+            double precoLitro = scanner.nextDouble();
+
             System.out.println("Informe a porcentagem antes de abastecer: ");
             double porcentagemPreAbastecer = scanner.nextDouble();
 
             System.out.println("Informe a porcentagem depois de abastecer: ");
             double porcentagemPosAbastecer = scanner.nextDouble();
-
-            Abastecimento abastecimento = new Abastecimento(data, quantidadeCombustivel, precoLitro, quilometragem,
+            scanner.close();
+            Abastecimento abastecimento = new Abastecimento(
+                    data,
+                    quantidadeCombustivel,
+                    precoLitro,
+                    quilometragem,
                     veiculo,
-                    combustivel, porcentagemPreAbastecer, porcentagemPosAbastecer);
+                    combustivel,
+                    porcentagemPreAbastecer,
+                    porcentagemPosAbastecer);
+
             veiculo.adicionarAbastecimento(abastecimento);
 
-            return abastecimento;
+            try (Scanner scan = new Scanner(System.in)) {
+                System.out.println("Deseja adicionar um novo abastecimento? (S/N)");
+                String keep = "";
+                if (scan.hasNext()) {
+                    keep = scan.nextLine();
+                    if (keep == "S") {
+                        criarAbastecimento();
+                    } else {
+                        System.out.println("Até logo!");
+                    }
+                } else {
+                    System.out.println("Erro: Nenhum tipo de valor de entrada fornecido.");
+                }
+
+            }
         }
     }
 
-    private static void listarAbastecimentos(Veiculo veiculo) {
+    private void listarAbastecimentos() {
         List<Abastecimento> abastecimentos = veiculo.getAbastecimentos();
 
         if (abastecimentos.size() > 0) {
@@ -78,26 +108,22 @@ public class Main {
                 System.out.println("Preço por Litro: " + abastecimento.getPrecoLitro());
                 System.out.println("Quilometragem: " + abastecimento.getQuilometragem());
                 System.out.println("Tipo de Combustível: " + abastecimento.getCombustivel());
-                System.out.println("Porcentagem antes de abastecer: " + abastecimento.getPorcentagemPreAbastecer());
-                System.out.println("Porcentagem depois de abastecer: " + abastecimento.getPorcentagemPosAbastecer());
-                System.out.println("---------------------------");
             }
         } else {
             System.out.println("Não há registros de abastecimento para listar.");
         }
     }
 
-    private static void listarInformacoesVeiculo(Veiculo veiculo) {
+    private void listarInformacoesVeiculo() {
         System.out.println("\nInformações do Veículo:");
         System.out.println("Modelo: " + veiculo.getModelo());
         System.out.println("Ano: " + veiculo.getAno());
         System.out.println("Placa: " + veiculo.getPlaca());
         System.out.println("Combustível: " + veiculo.getCombustivel());
         System.out.println("Consumo Médio: " + veiculo.getConsumoMedio());
-        System.out.println("Capacidade do Tanque: " + veiculo.getCapacidadeTanque());
     }
 
-    private static void criarResumo(Veiculo veiculo) {
+    private void criarResumo() {
         List<Abastecimento> abastecimentos = veiculo.getAbastecimentos();
 
         if (abastecimentos.size() > 0) {
@@ -125,5 +151,4 @@ public class Main {
             System.out.println("Não há registros de abastecimento para criar um resumo.");
         }
     }
-
 }

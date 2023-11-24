@@ -1,4 +1,4 @@
-package POOMA_ENTREGAS.ImplementacaoPI.Parte02;
+package POOMA_ENTREGAS.ImplementacaoPI.Parte02.Models;
 
 import java.util.ArrayList;
 import java.util.List;
