@@ -28,6 +28,10 @@ public class AbastecimentoController {
         abastecimentos.add(abastecimento);
     }
 
+    public void adicionarVeiculo(String placa, String marca, String modelo) {
+        new Veiculo(placa, marca, modelo);
+    }
+
     public double calcularMediaKmPorLitro(Veiculo veiculo) {
         double somaKmPorLitro = 0.0;
         int totalAbastecimentos = 0;

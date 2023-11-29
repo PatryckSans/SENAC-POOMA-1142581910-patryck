@@ -64,8 +64,11 @@ public class AbastecimentoView {
         Veiculo veiculo = obterVeiculoPorPlaca(placaVeiculo);
 
         if (veiculo == null) {
-            System.out.println("Veículo não encontrado. Adicione o veículo antes de continuar.");
-            return;
+            System.out.print("Marca do Veículo: ");
+            String marcaVeiculo = scanner.nextLine();
+            System.out.print("Modelo do Veículo: ");
+            String modeloVeiculo = scanner.nextLine();
+            abastecimentoController.adicionarVeiculo(placaVeiculo, marcaVeiculo, modeloVeiculo);
         }
 
         System.out.print("Nome do Posto: ");
