@@ -1,9 +1,10 @@
-package POOMA_ENTREGAS.ImplementacaoPI.Parte02.Models;
+package POOMA_ENTREGAS.ImplementacaoPI.GestaoCombustivel.Models;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Veiculo {
+    private int id;
     private String modelo;
     private int ano;
     private String placa;
@@ -13,8 +14,9 @@ public class Veiculo {
     private String senha;
     private List<Abastecimento> abastecimentos;
 
-    public Veiculo(String modelo, int ano, String placa, double consumoMedio, String combustivel,
+    public Veiculo(int id, String modelo, int ano, String placa, double consumoMedio, String combustivel,
             double capacidadeTanque, String senha) {
+        this.id = id;
         this.modelo = modelo;
         this.ano = ano;
         this.placa = placa;
@@ -31,6 +33,14 @@ public class Veiculo {
 
     public void adicionarAbastecimento(Abastecimento abastecimento) {
         abastecimentos.add(abastecimento);
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getModelo() {

@@ -1,8 +1,9 @@
-package POOMA_ENTREGAS.ImplementacaoPI.Parte02.Models;
+package POOMA_ENTREGAS.ImplementacaoPI.GestaoCombustivel.Models;
 
 import java.util.Date;
 
 public class Abastecimento {
+    private int id;
     private Date data;
     private double quantidadeCombustivel;
     private double precoLitro;
@@ -12,8 +13,10 @@ public class Abastecimento {
     private double porcentagemPreAbastecer;
     private double porcentagemPosAbastecer;
 
-    public Abastecimento(Date data, double quantidadeCombustivel, double precoLitro, double quilometragem,
-            Veiculo veiculo, String combustivel, double porcentagemPreAbastecer, double porcentagemPosAbastecer) {
+    public Abastecimento(int id, Date data, double quantidadeCombustivel, double precoLitro,
+            double quilometragem, Veiculo veiculo, String combustivel,
+            double porcentagemPreAbastecer, double porcentagemPosAbastecer) {
+        this.id = id;
         this.data = data;
         this.quantidadeCombustivel = quantidadeCombustivel;
         this.precoLitro = precoLitro;
@@ -22,6 +25,14 @@ public class Abastecimento {
         this.combustivel = combustivel;
         this.porcentagemPreAbastecer = porcentagemPreAbastecer;
         this.porcentagemPosAbastecer = porcentagemPosAbastecer;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Date getData() {

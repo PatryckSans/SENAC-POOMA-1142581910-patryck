@@ -1,20 +1,27 @@
-package POOMA_ENTREGAS.ImplementacaoPI.Parte02.Models;
+package POOMA_ENTREGAS.ImplementacaoPI.GestaoCombustivel.Models;
 
 import java.util.Date;
 
 public class Resumo {
+    private int id;
     private Date dataInicio;
     private Date data;
     private int numeroRegistros;
     private Veiculo veiculo;
     private double quilometroPorLitro;
 
-    public Resumo(Date dataInicio, Date data, int numeroRegistros, Veiculo veiculo, double quilometroPorLitro) {
+    public Resumo(int id, Date dataInicio, Date data, int numeroRegistros, Veiculo veiculo,
+            double quilometroPorLitro) {
+        this.id = id;
         this.dataInicio = dataInicio;
         this.data = data;
         this.numeroRegistros = numeroRegistros;
         this.veiculo = veiculo;
         this.quilometroPorLitro = quilometroPorLitro;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public Date getDataInicio() {
