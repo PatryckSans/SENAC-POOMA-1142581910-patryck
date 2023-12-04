@@ -78,8 +78,8 @@ public class AbastecimentoView {
         Posto posto = obterPosto(nomePosto, localizacaoPosto);
 
         if (posto == null) {
-            System.out.println("Posto não encontrado. Adicione o posto antes de continuar.");
-            return;
+            abastecimentoController.adicionarPosto(nomePosto, localizacaoPosto);
+            System.out.println("Posto novo adicionado!");
         }
 
         System.out.print("Data do Abastecimento (yyyy-MM-dd): ");
@@ -111,6 +111,7 @@ public class AbastecimentoView {
         if (abastecimentos.isEmpty()) {
             System.out.println("Nenhum abastecimento encontrado.");
         } else {
+            System.out.println(abastecimentos);
             for (Abastecimento abastecimento : abastecimentos) {
                 System.out.println(abastecimento);
             }
